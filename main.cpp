@@ -10,6 +10,7 @@
 #include "objectSimilarityMeasures/customObjectSimilarityMeasure.h"
 #include "objectSimilarityMeasures/attributesSimilarityMeasures/numerical/smcNumericalAttributesSimilarityMeasure.h"
 #include "objectSimilarityMeasures/attributesSimilarityMeasures/categorical/smcCategoricalAttributesSimilarityMeasure.h"
+#include "clustersSimilarityMeasures/singleLinkClusterSimilarityMeasure.h"
 
 
 int main()
@@ -45,10 +46,13 @@ int main()
   // Group objects
   int numberOfClusters = 10;
 
-  groupingAlgorithm* a = new classicalAHCAlgorithm(numberOfClusters);
   attributesSimilarityMeasure* nAttrSimMeasure = new smcNumericalAttributesSimilarityMeasure();
   attributesSimilarityMeasure* cAttrSimMeasure = new smcCategoricalAttributesSimilarityMeasure();
-  customObjectSimilarityMeasure oSimMeasure(&attributesData, nAttrSimMeasure, cAttrSimMeasure);
+  objectsSimilarityMeasure *oSimMeasure =
+    new customObjectSimilarityMeasure(&attributesData, nAttrSimMeasure, cAttrSimMeasure);
+  clustersSimilarityMeasure* cSimMeasure = new singleLinkClusterSimilarityMeasure(oSimMeasure);
+
+  groupingAlgorithm* a = new classicalAHCAlgorithm(numberOfClusters, cSimMeasure);
 
   a->groupObjects(&samples, &clusters);
 

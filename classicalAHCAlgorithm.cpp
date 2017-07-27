@@ -1,10 +1,9 @@
 #include <iostream>
 #include "classicalAHCAlgorithm.h"
 
-classicalAHCAlgorithm::classicalAHCAlgorithm(int numberOfClusters) : numberOfClusters(numberOfClusters)
-{
-
-}
+classicalAHCAlgorithm::classicalAHCAlgorithm(int numberOfClusters, clustersSimilarityMeasure *cSimMeasure) :
+  numberOfClusters(numberOfClusters), cSimMeasure(cSimMeasure)
+{}
 
 void classicalAHCAlgorithm::groupObjects(vector<sample *> *samples, vector<cluster> *target)
 {
