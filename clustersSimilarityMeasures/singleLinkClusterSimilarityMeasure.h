@@ -6,7 +6,11 @@
 class singleLinkClusterSimilarityMeasure : public clustersSimilarityMeasure
 {
   public:
+    singleLinkClusterSimilarityMeasure(objectsSimilarityMeasure *oSimMeasure);
     double countClustersSimilarity(cluster* c1, cluster* c2);
+
+  protected:
+    bool isSimilarityValueCorrect(double value);
 };
 
 
