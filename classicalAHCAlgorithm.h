@@ -7,7 +7,7 @@ class classicalAHCAlgorithm : public similarityBasedGroupingAlgorithm
 {
   public:
 
-    classicalAHCAlgorithm();
+    classicalAHCAlgorithm(int numberOfClusters);
     void groupObjects(vector<sample*>* samples, vector<cluster>* target);
 
   protected:
@@ -15,9 +15,11 @@ class classicalAHCAlgorithm : public similarityBasedGroupingAlgorithm
     int numberOfClusters = 1;
 
     vector<cluster> clusters;
+    vector<vector<double>> similarityMatrix;
 
     bool isClusteringPossible(vector<sample*>* samples);
     void clusterSamples(vector<sample*>* samples);
+    void fillSimilarityMatrix();
 
 };
 

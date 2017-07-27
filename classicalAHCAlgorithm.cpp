@@ -1,7 +1,7 @@
 #include <iostream>
 #include "classicalAHCAlgorithm.h"
 
-classicalAHCAlgorithm::classicalAHCAlgorithm()
+classicalAHCAlgorithm::classicalAHCAlgorithm(int numberOfClusters) : numberOfClusters(numberOfClusters)
 {
 
 }
@@ -10,6 +10,7 @@ void classicalAHCAlgorithm::groupObjects(vector<sample *> *samples, vector<clust
 {
   if(!isClusteringPossible(samples)) return;
   clusterSamples(samples);
+  fillSimilarityMatrix();
 
   *target = clusters;
 }
@@ -41,4 +42,9 @@ void classicalAHCAlgorithm::clusterSamples(vector<sample *> *samples)
 {
   for(int clusterIndex = 0; clusterIndex < samples->size(); ++clusterIndex)
     clusters.push_back(cluster(clusterIndex, samples->at(clusterIndex)));
+}
+
+void classicalAHCAlgorithm::fillSimilarityMatrix()
+{
+
 }

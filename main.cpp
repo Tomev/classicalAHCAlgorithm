@@ -39,7 +39,8 @@ int main()
   }
 
   // Group objects
-  groupingAlgorithm* a = new classicalAHCAlgorithm();
+  int numberOfClusters = 10;
+  groupingAlgorithm* a = new classicalAHCAlgorithm(numberOfClusters);
 
   a->groupObjects(&samples, &clusters);
 
