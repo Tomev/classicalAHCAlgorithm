@@ -11,7 +11,7 @@
 #ifndef RESERVOIRALGORITHM_TEXTDATAREADER_H
 #define RESERVOIRALGORITHM_TEXTDATAREADER_H
 
-#include "../dataReader.h"
+#include "dataReader.h"
 
 #include <fstream>
 

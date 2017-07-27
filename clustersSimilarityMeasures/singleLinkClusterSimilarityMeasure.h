@@ -1,7 +1,7 @@
 #ifndef CLASSICALAHCALGORITHM_SINGLELINKCLUSTERSIMILARITYMEASURE_H
 #define CLASSICALAHCALGORITHM_SINGLELINKCLUSTERSIMILARITYMEASURE_H
 
-#include "../clustersSimilarityMeasure.h"
+#include "clustersSimilarityMeasure.h"
 
 class singleLinkClusterSimilarityMeasure : public clustersSimilarityMeasure
 {

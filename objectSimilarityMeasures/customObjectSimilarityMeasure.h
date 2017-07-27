@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "objectsSimilarityMeasure.h"
-#include "../attributeData.h"
+#include "../attributesData/attributeData.h"
 
 class customObjectSimilarityMeasure : public objectsSimilarityMeasure
 {

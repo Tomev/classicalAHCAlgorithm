@@ -3,7 +3,7 @@
 #include <fstream>
 
 #include "groupingAlgorithm/cluster.h"
-#include "attributeData.h"
+#include "attributesData/attributeData.h"
 #include "dataReaders/textDataReader.h"
 #include "dataParsers/textDataParser.h"
 #include "classicalAHCAlgorithm.h"

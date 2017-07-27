@@ -7,7 +7,7 @@
 
 #include <vector>
 
-#include "groupingAlgorithm/sample.h"
+#include "../groupingAlgorithm/sample.h"
 
 using namespace std;
 

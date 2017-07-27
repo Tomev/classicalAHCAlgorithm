@@ -1,8 +1,8 @@
 #ifndef CLASSICALAHCALGORITHM_CLUSTERSSIMILARITYMEASURE_H
 #define CLASSICALAHCALGORITHM_CLUSTERSSIMILARITYMEASURE_H
 
-#include "groupingAlgorithm/cluster.h"
-#include "objectSimilarityMeasures/objectsSimilarityMeasure.h"
+#include "../groupingAlgorithm/cluster.h"
+#include "../objectSimilarityMeasures/objectsSimilarityMeasure.h"
 
 class clustersSimilarityMeasure
 {

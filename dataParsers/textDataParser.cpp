@@ -3,7 +3,7 @@
 //
 
 #include "textDataParser.h"
-#include "../numericalAttributeData.h"
+#include "../attributesData/numericalAttributeData.h"
 
 #include <sstream>
 
