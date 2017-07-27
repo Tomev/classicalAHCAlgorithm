@@ -22,6 +22,7 @@ class classicalAHCAlgorithm : public similarityBasedGroupingAlgorithm
     bool isClusteringPossible(vector<sample*>* samples);
     void clusterSamples(vector<sample*>* samples);
     void fillSimilarityMatrix();
+    void findMostSimilarClusters(int& c1, int& c2);
 
 };
 

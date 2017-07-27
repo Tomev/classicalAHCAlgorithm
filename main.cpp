@@ -36,7 +36,7 @@ int main()
   vector<sample*> samples;
   vector<cluster> clusters;
 
-  for(int i = 0; i < 10; ++i)
+  for(int i = 0; i < 11; ++i)
   {
     dr->getNextRawDatum(dp->buffer);
     dp->addDatumToContainer(&samples);

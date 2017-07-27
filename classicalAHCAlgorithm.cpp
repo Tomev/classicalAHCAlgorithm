@@ -11,9 +11,13 @@ void classicalAHCAlgorithm::groupObjects(vector<sample *> *samples, vector<clust
   clusterSamples(samples);
   fillSimilarityMatrix();
 
+  int c1 = 0, c2 = 0;
+
   while(clusters.size() != numberOfClusters)
   {
-
+    findMostSimilarClusters(c1, c2);
+    //joinMostSimilarClusters(c1, c2);
+    //updateSimilarityMatrix();
   }
 
   *target = clusters;
@@ -65,6 +69,28 @@ void classicalAHCAlgorithm::fillSimilarityMatrix()
       // We want to create square matrix, so that we can use .at(i).at(j) and .at(j).at(i) mindlessly.
       // It can be changed to triangle matrix for space-saving purposes by commenting out line below.
       if(j != i) similarityMatrix.at(j).push_back(simValue);
+    }
+  }
+}
+
+void classicalAHCAlgorithm::findMostSimilarClusters(int &c1, int &c2)
+{
+  double maxSimilarity = 0;
+
+  for(int i = 0; i < similarityMatrix.size(); ++i)
+  {
+    for(int j = 0; j < i; ++j)
+    {
+      if(i == j) continue;
+
+      if(similarityMatrix.at(i).at(j) > maxSimilarity)
+      {
+        maxSimilarity = similarityMatrix.at(i).at(j);
+        c1 = i;
+        c2 = j;
+
+        if(1 - maxSimilarity <= 1e-5) return;
+      }
     }
   }
 }
