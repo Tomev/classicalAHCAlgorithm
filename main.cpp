@@ -7,6 +7,10 @@
 #include "dataReaders/textDataReader.h"
 #include "dataParsers/textDataParser.h"
 #include "classicalAHCAlgorithm.h"
+#include "objectSimilarityMeasures/customObjectSimilarityMeasure.h"
+#include "objectSimilarityMeasures/attributesSimilarityMeasures/numerical/smcNumericalAttributesSimilarityMeasure.h"
+#include "objectSimilarityMeasures/attributesSimilarityMeasures/categorical/smcCategoricalAttributesSimilarityMeasure.h"
+
 
 int main()
 {
@@ -40,7 +44,11 @@ int main()
 
   // Group objects
   int numberOfClusters = 10;
+
   groupingAlgorithm* a = new classicalAHCAlgorithm(numberOfClusters);
+  attributesSimilarityMeasure* nAttrSimMeasure = new smcNumericalAttributesSimilarityMeasure();
+  attributesSimilarityMeasure* cAttrSimMeasure = new smcCategoricalAttributesSimilarityMeasure();
+  customObjectSimilarityMeasure oSimMeasure(&attributesData, nAttrSimMeasure, cAttrSimMeasure);
 
   a->groupObjects(&samples, &clusters);
 
