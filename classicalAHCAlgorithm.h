@@ -13,7 +13,8 @@ class classicalAHCAlgorithm : public similarityBasedGroupingAlgorithm
 
   protected:
 
-    int numberOfClusters = 1;
+    int numberOfClusters = 1,
+        newClusterIndex = 0;
     clustersSimilarityMeasure *cSimMeasure;
 
     vector<cluster> clusters;
@@ -23,6 +24,7 @@ class classicalAHCAlgorithm : public similarityBasedGroupingAlgorithm
     void clusterSamples(vector<sample*>* samples);
     void fillSimilarityMatrix();
     void findMostSimilarClusters(int& c1, int& c2);
+    void joinClusters(int c1Idx, int c2Idx);
 
 };
 

@@ -16,7 +16,7 @@ void classicalAHCAlgorithm::groupObjects(vector<sample *> *samples, vector<clust
   while(clusters.size() != numberOfClusters)
   {
     findMostSimilarClusters(c1, c2);
-    //joinMostSimilarClusters(c1, c2);
+    joinClusters(c1, c2);
     //updateSimilarityMatrix();
   }
 
@@ -48,8 +48,8 @@ bool classicalAHCAlgorithm::isClusteringPossible(vector<sample *>* samples)
 
 void classicalAHCAlgorithm::clusterSamples(vector<sample *> *samples)
 {
-  for(int clusterIndex = 0; clusterIndex < samples->size(); ++clusterIndex)
-    clusters.push_back(cluster(clusterIndex, samples->at(clusterIndex)));
+  for(int clusterIndex = 0; clusterIndex < samples->size();)
+    clusters.push_back(cluster(clusterIndex, samples->at(clusterIndex++)));
 }
 
 void classicalAHCAlgorithm::fillSimilarityMatrix()
@@ -93,4 +93,16 @@ void classicalAHCAlgorithm::findMostSimilarClusters(int &c1, int &c2)
       }
     }
   }
+}
+
+void classicalAHCAlgorithm::joinClusters(int c1Idx, int c2Idx)
+{
+  cluster newCluster(++newClusterIndex);
+  newCluster.addSubcluster(clusters.at(c1Idx));
+  newCluster.addSubcluster(clusters.at(c2Idx));
+  newCluster.findRepresentative();
+
+  // Add newly created cluster in place of one of the oldest.
+  clusters.erase(clusters.begin() + c2Idx);
+  clusters.insert(clusters.begin() + c2Idx, newCluster);
 }
