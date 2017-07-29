@@ -17,10 +17,13 @@ void classicalAHCAlgorithm::groupObjects(vector<sample *> *samples, vector<clust
   {
     findMostSimilarClusters(c1, c2);
     joinClusters(c1, c2);
-    //updateSimilarityMatrix();
+    updateSimilarityMatrix(c1, c2);
+    cout << clusters.size() << endl;
   }
 
   *target = clusters;
+
+  printSimilarityMatrix();
 }
 
 bool classicalAHCAlgorithm::isClusteringPossible(vector<sample *>* samples)
@@ -72,17 +75,6 @@ void classicalAHCAlgorithm::fillSimilarityMatrix()
       //if(j != i) similarityMatrix.at(j).push_back(simValue);
     }
   }
-
-  for(int i = 0; i < similarityMatrix.size(); ++i)
-  {
-    for(int j = 0; j < similarityMatrix.at(i).size(); ++j)
-    {
-      cout << similarityMatrix.at(i).at(j) << ", ";
-    }
-
-    cout << endl;
-  }
-
 }
 
 void classicalAHCAlgorithm::findMostSimilarClusters(int &c1, int &c2)
@@ -101,10 +93,18 @@ void classicalAHCAlgorithm::findMostSimilarClusters(int &c1, int &c2)
         c1 = i;
         c2 = j;
 
-        if(1 - maxSimilarity <= 1e-5) return;
+        if(1 - maxSimilarity <= 1e-5)
+        {
+          lastMaximalSimilarity = maxSimilarity;
+          return;
+        }
+
+        if(maxSimilarity == lastMaximalSimilarity) return;
       }
     }
   }
+
+  lastMaximalSimilarity = maxSimilarity;
 }
 
 void classicalAHCAlgorithm::joinClusters(int c1Idx, int c2Idx)
@@ -122,3 +122,64 @@ void classicalAHCAlgorithm::joinClusters(int c1Idx, int c2Idx)
 
   clusters.erase(clusters.begin() + c1Idx);
 }
+
+int classicalAHCAlgorithm::updateSimilarityMatrix(int c1Idx, int c2Idx)
+{
+  // Delete joined clusters data from similarity matrix.
+  deleteClusterSimilarityValues(c1Idx);
+  deleteClusterSimilarityValues(c2Idx);
+
+  // Add data of created cluster to similarity matrix.
+  addClusterSimilarityValues(c2Idx);
+
+  return 0;
+}
+
+int classicalAHCAlgorithm::deleteClusterSimilarityValues(int cIdx)
+{
+  // Delete row.
+  similarityMatrix.erase(similarityMatrix.begin() + cIdx);
+
+  // Delete column.
+  for(int rowIdx = cIdx; rowIdx < similarityMatrix.size(); ++rowIdx)
+    similarityMatrix.at(rowIdx).erase(similarityMatrix.at(rowIdx).begin() + cIdx);
+
+  return 0;
+}
+
+int classicalAHCAlgorithm::addClusterSimilarityValues(int cIdx)
+{
+  // Add new row to similarity matrix at proper index.
+  similarityMatrix.insert(similarityMatrix.begin() + cIdx, vector<double>());
+
+  // Add row data (into vector).
+  for(int clusterIndex = 0; clusterIndex < cIdx; ++clusterIndex)
+    similarityMatrix.at(cIdx).push_back(cSimMeasure->countClustersSimilarity(&clusters.at(cIdx),
+                                                                             &clusters.at(clusterIndex)));
+
+  // Don't count clusters similarity to itself. Push 1 to the back.
+  similarityMatrix.at(cIdx).push_back(1);
+
+  // Insert column with similarity data.
+  for(int clusterIndex = cIdx + 1; clusterIndex < similarityMatrix.size(); ++clusterIndex)
+    similarityMatrix.at(clusterIndex).insert(similarityMatrix.at(clusterIndex).begin() + cIdx,
+                                             cSimMeasure->countClustersSimilarity(&clusters.at(cIdx),
+                                                                                  &clusters.at(clusterIndex)));
+  return 0;
+}
+
+void classicalAHCAlgorithm::printSimilarityMatrix()
+{
+  for(int i = 0; i < similarityMatrix.size(); ++i)
+  {
+    for(int j = 0; j < similarityMatrix.at(i).size(); ++j)
+    {
+      cout << similarityMatrix.at(i).at(j) << ", ";
+    }
+
+    cout << endl;
+  }
+}
+
+
+

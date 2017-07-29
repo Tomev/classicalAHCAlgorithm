@@ -36,7 +36,7 @@ int main()
   vector<sample*> samples;
   vector<cluster> clusters;
 
-  for(int i = 0; i < 11; ++i)
+  for(int i = 0; i < 1000; ++i)
   {
     dr->getNextRawDatum(dp->buffer);
     dp->addDatumToContainer(&samples);
@@ -61,7 +61,10 @@ int main()
 
   double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
 
-  cout << "Objects clustered in in " << elapsed_secs << " seconds.";
+  cout << "Objects clustered in in " << elapsed_secs << " seconds.\n";
+
+  for(int i = 0; i < clusters.size(); ++i)
+    cout << clusters.at(i).size() << endl;
 
   return 0;
 }

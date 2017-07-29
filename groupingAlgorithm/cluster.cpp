@@ -76,7 +76,9 @@ long cluster::size()
 {
   if(representsObject()) return 1;
 
-  return subclusters.size();
+  vector<sample*> objects;
+  this->getObjects(&objects);
+  return objects.size();
 }
 
 void cluster::setRepresentative(sample *newRepresentative)
