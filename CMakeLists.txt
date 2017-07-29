@@ -3,9 +3,9 @@ project(classicalAHCAlgorithm)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES    main.cpp classicalAHCAlgorithm.cpp classicalAHCAlgorithm.h dataReaders/textDataReader.cpp
-                    dataParsers/textDataParser.cpp dataSamples/textDataSample.cpp groupingAlgorithm/cluster.cpp
-                    groupingAlgorithm/similarityBasedGroupingAlgorithm.h groupingAlgorithm/groupingAlgorithm.h
-                    groupingAlgorithm/sample.h attributesData/attributeData.h attributesData/categoricalAttributeData.cpp
+set(SOURCE_FILES    main.cpp groupingAlgorithms/classicalAHCAlgorithm.cpp groupingAlgorithms/classicalAHCAlgorithm.h dataReaders/textDataReader.cpp
+                    dataParsers/textDataParser.cpp dataSamples/textDataSample.cpp groupingAlgorithms/cluster.cpp
+        groupingAlgorithms/similarityBasedGroupingAlgorithm.h groupingAlgorithms/groupingAlgorithm.h
+        groupingAlgorithms/sample.h attributesData/attributeData.h attributesData/categoricalAttributeData.cpp
         dataParsers/dataParser.h dataReaders/dataReader.h attributesData/numericalAttributeData.cpp attributesData/numericalAttributeData.h clustersSimilarityMeasures/clustersSimilarityMeasure.h clustersSimilarityMeasures/singleLinkClusterSimilarityMeasure.cpp clustersSimilarityMeasures/singleLinkClusterSimilarityMeasure.h objectSimilarityMeasures/objectsSimilarityMeasure.h objectSimilarityMeasures/customObjectSimilarityMeasure.cpp objectSimilarityMeasures/customObjectSimilarityMeasure.h objectSimilarityMeasures/attributesSimilarityMeasures/attributesSimilarityMeasure.h objectSimilarityMeasures/attributesSimilarityMeasures/categorical/smcCategoricalAttributesSimilarityMeasure.cpp objectSimilarityMeasures/attributesSimilarityMeasures/categorical/smcCategoricalAttributesSimilarityMeasure.h objectSimilarityMeasures/attributesSimilarityMeasures/numerical/smcNumericalAttributesSimilarityMeasure.cpp objectSimilarityMeasures/attributesSimilarityMeasures/numerical/smcNumericalAttributesSimilarityMeasure.h)
 add_executable(classicalAHCAlgorithm ${SOURCE_FILES})

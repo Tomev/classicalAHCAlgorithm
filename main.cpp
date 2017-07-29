@@ -2,11 +2,10 @@
 #include <ctime>
 #include <fstream>
 
-#include "groupingAlgorithm/cluster.h"
 #include "attributesData/attributeData.h"
 #include "dataReaders/textDataReader.h"
 #include "dataParsers/textDataParser.h"
-#include "classicalAHCAlgorithm.h"
+#include "groupingAlgorithms/classicalAHCAlgorithm.h"
 #include "objectSimilarityMeasures/customObjectSimilarityMeasure.h"
 #include "objectSimilarityMeasures/attributesSimilarityMeasures/numerical/smcNumericalAttributesSimilarityMeasure.h"
 #include "objectSimilarityMeasures/attributesSimilarityMeasures/categorical/smcCategoricalAttributesSimilarityMeasure.h"
@@ -62,9 +61,6 @@ int main()
   double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
 
   cout << "Objects clustered in in " << elapsed_secs << " seconds.\n";
-
-  for(int i = 0; i < clusters.size(); ++i)
-    cout << clusters.at(i).size() << endl;
 
   return 0;
 }

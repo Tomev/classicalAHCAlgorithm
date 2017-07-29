@@ -1,8 +1,8 @@
 #ifndef CLASSICALAHCALGORITHM_CLASSICALAHCALGORITHM_H
 #define CLASSICALAHCALGORITHM_CLASSICALAHCALGORITHM_H
 
-#include "groupingAlgorithm/similarityBasedGroupingAlgorithm.h"
-#include "clustersSimilarityMeasures/clustersSimilarityMeasure.h"
+#include "similarityBasedGroupingAlgorithm.h"
+#include "../clustersSimilarityMeasures/clustersSimilarityMeasure.h"
 
 class classicalAHCAlgorithm : public similarityBasedGroupingAlgorithm
 {

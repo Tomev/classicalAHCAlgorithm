@@ -1,7 +1,7 @@
 #ifndef CLASSICALAHCALGORITHM_OBJECTSSIMILARITYMEASURE_H
 #define CLASSICALAHCALGORITHM_OBJECTSSIMILARITYMEASURE_H
 
-#include "../groupingAlgorithm/sample.h"
+#include "../groupingAlgorithms/sample.h"
 
 class objectsSimilarityMeasure
 {

@@ -22,8 +22,6 @@ void classicalAHCAlgorithm::groupObjects(vector<sample *> *samples, vector<clust
   }
 
   *target = clusters;
-
-  printSimilarityMatrix();
 }
 
 bool classicalAHCAlgorithm::isClusteringPossible(vector<sample *>* samples)
