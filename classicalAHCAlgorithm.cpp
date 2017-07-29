@@ -66,11 +66,23 @@ void classicalAHCAlgorithm::fillSimilarityMatrix()
     {
       simValue = cSimMeasure->countClustersSimilarity(&clusters.at(i), &clusters.at(j));
       similarityMatrix.at(i).push_back(simValue);
-      // We want to create square matrix, so that we can use .at(i).at(j) and .at(j).at(i) mindlessly.
-      // It can be changed to triangle matrix for space-saving purposes by commenting out line below.
-      if(j != i) similarityMatrix.at(j).push_back(simValue);
+      // If we want to create square matrix, so that we can use .at(i).at(j) and .at(j).at(i) mindlessly
+      // uncomment line below.
+
+      //if(j != i) similarityMatrix.at(j).push_back(simValue);
     }
   }
+
+  for(int i = 0; i < similarityMatrix.size(); ++i)
+  {
+    for(int j = 0; j < similarityMatrix.at(i).size(); ++j)
+    {
+      cout << similarityMatrix.at(i).at(j) << ", ";
+    }
+
+    cout << endl;
+  }
+
 }
 
 void classicalAHCAlgorithm::findMostSimilarClusters(int &c1, int &c2)
@@ -97,12 +109,16 @@ void classicalAHCAlgorithm::findMostSimilarClusters(int &c1, int &c2)
 
 void classicalAHCAlgorithm::joinClusters(int c1Idx, int c2Idx)
 {
+  // Finding method works in such a way that c1Idx is greater than c2Idx
+
   cluster newCluster(++newClusterIndex);
   newCluster.addSubcluster(clusters.at(c1Idx));
   newCluster.addSubcluster(clusters.at(c2Idx));
   newCluster.findRepresentative();
 
-  // Add newly created cluster in place of one of the oldest.
+  // Add newly created cluster in place of one at c2Idx.
   clusters.erase(clusters.begin() + c2Idx);
   clusters.insert(clusters.begin() + c2Idx, newCluster);
+
+  clusters.erase(clusters.begin() + c1Idx);
 }
