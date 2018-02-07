@@ -9,7 +9,10 @@
 #include "objectSimilarityMeasures/customObjectSimilarityMeasure.h"
 #include "objectSimilarityMeasures/attributesSimilarityMeasures/numerical/smcNumericalAttributesSimilarityMeasure.h"
 #include "objectSimilarityMeasures/attributesSimilarityMeasures/categorical/smcCategoricalAttributesSimilarityMeasure.h"
+
 #include "clustersSimilarityMeasures/singleLinkClusterSimilarityMeasure.h"
+#include "clustersSimilarityMeasures/completeLinkClusterSimilarityMeasure.h"
+#include "clustersSimilarityMeasures/averageLinkClusterSimilarityMeasure.h"
 
 
 int main()

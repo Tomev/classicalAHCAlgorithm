@@ -15,10 +15,13 @@ void classicalAHCAlgorithm::groupObjects(vector<sample *> *samples, vector<clust
 
   while(clusters.size() != numberOfClusters)
   {
+    //std::cout << "Finding most similar clusters.\n" << std::flush;
     findMostSimilarClusters(c1, c2);
+    //std::cout << "Joining clusters.\n" << std::flush;;
     joinClusters(c1, c2);
+    //std::cout << "Updating cluster matrix.\n" << std::flush;;
     updateSimilarityMatrix(c1, c2);
-    cout << clusters.size() << endl;
+    std::cout << "Current clusters number: " << clusters.size() << "\n" << std::flush;;
   }
 
   *target = clusters;
@@ -78,6 +81,9 @@ void classicalAHCAlgorithm::fillSimilarityMatrix()
 void classicalAHCAlgorithm::findMostSimilarClusters(int &c1, int &c2)
 {
   double maxSimilarity = 0;
+
+  c1 = 0;
+  c2 = 1;
 
   for(int i = 0; i < similarityMatrix.size(); ++i)
   {
